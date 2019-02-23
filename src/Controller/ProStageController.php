@@ -24,7 +24,8 @@ class ProStageController extends AbstractController
     public function showStageEnDetail()
     {
 
-      return $this->render();
+
+      return $this->render("pro_stage/detailStage.html.twig");
     }
 
 
@@ -35,7 +36,7 @@ class ProStageController extends AbstractController
     public function showStages()
     {
 
-      return $this->render();
+      return $this->render("pro_stage/stages.html.twig", ['stages' => $stages ]);
     }
 
 
@@ -47,7 +48,7 @@ class ProStageController extends AbstractController
     {
 
 
-      return $this->render();
+      return $this->render("pro_stage/StagesPourEntreprise.html.twig", ['stages'=>$stage, 'entreprise'=> $entreprise]);
     }
 
 
@@ -57,7 +58,10 @@ class ProStageController extends AbstractController
     public function showStageParFormation()
     {
 
+      return $this->render("pro_stage/StagesPourFormtion.html.twig", ['stages'=>$stage, 'entreprise'=>$formation]);
     }
+
+    
 
 
 }
