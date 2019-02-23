@@ -7,9 +7,9 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Stage;
 use App\Entity\Entreprise;
 use App\Entity\Formation;
-use App\Repository\RepositoryStage;
-use App\Repository\RepositoryEntreprise;
-use App\Repository\RepositoryFormation;
+use App\Repository\StageRepository;
+use App\Repository\EntrepriseRepository;
+use App\Repository\FormationRepository;
 
 class ProStageController extends AbstractController
 {
@@ -37,9 +37,9 @@ class ProStageController extends AbstractController
     /**
     *@Route("stages", name="pro_stage_stages")
     */
-    public function showStages(RepositoryStage $repoStages)
+    public function showStages(StageRepository $repoStages)
     {
-      $repoStages->findAll();
+      $stages=$repoStages->findAll();
 
       return $this->render("pro_stage/stages.html.twig", ['stages' => $stages ]);
     }
@@ -73,7 +73,7 @@ class ProStageController extends AbstractController
     /**
     *@Route("entreprises", name="pro_stage_entreprises")
     */
-    public function showEntreprises(RepositoryEntreprise $repoEntreprise)
+    public function showEntreprises(EntrepriseRepository $repoEntreprise)
     {
 
       $entreprises=$repoEntreprise->findAll();
@@ -84,7 +84,7 @@ class ProStageController extends AbstractController
     /**
     *@Route("formations", name="pro_stage_formation")
     */
-    public function showFormations(RepositoryFormation $repoFormation)
+    public function showFormations(FormationRepository $repoFormation)
     {
       $formations=$repoFormation->findAll();
 
