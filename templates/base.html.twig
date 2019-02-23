@@ -22,7 +22,7 @@
         	<div class="row">
         		<div class="col-md-12">
               <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-                <a class="navbar-brand" href="#">Acceuil</a>
+                <a class="navbar-brand" href=" {{path('pro_stage')}}">Acceuil</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
                   <span class="navbar-toggler-icon"></span>
                 </button>
@@ -30,13 +30,13 @@
                 <div class="collapse navbar-collapse" id="navbarColor02">
                   <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                      <a class="nav-link" href="#">Touts les stages <span class="sr-only">(current)</span></a>
+                      <a class="nav-link" href="{{ path( 'pro_stage_stages' )}}">Touts les stages <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="#">Filtrer par formation</a>
+                      <a class="nav-link" href="{{path('pro_stage_formation')}}">Filtrer par formation</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="#">Filtrer par entreprise</a>
+                      <a class="nav-link" href="{{path('pro_stage_entreprises')}}">Filtrer par entreprise</a>
                     </li>
                     <li class="nav-item">
                       <a class="nav-link" href="#">Ajouter une entreprise</a>
