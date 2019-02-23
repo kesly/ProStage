@@ -17,19 +17,9 @@ class ProStageController extends AbstractController
         ]);
     }
 
-    /**
-    *
-    */
-    public function showStages()
-    {
-
-
-      return $this->render();
-
-    }
 
     /**
-    *
+    *@Route("stage/{id}", name="pro_stage_stage")
     */
     public function showStageEnDetail()
     {
@@ -40,9 +30,9 @@ class ProStageController extends AbstractController
 
 
     /**
-    *@Route("", nome="pro_stage")
+    *@Route("stages", name="pro_stage_stages")
     */
-    public function showStage()
+    public function showStages()
     {
 
       return $this->render();
@@ -51,7 +41,7 @@ class ProStageController extends AbstractController
 
 
     /**
-    *@Route
+    *@Route("entreprise/{id}", name="pro_stage_entreprise")
     */
     public function showStageParEntreprise()
     {
@@ -62,7 +52,7 @@ class ProStageController extends AbstractController
 
 
     /**
-    *
+    *@Route("entreprise/{id}", name="pro_stage_formation")
     */
     public function showStageParFormation()
     {
