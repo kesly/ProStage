@@ -105,7 +105,14 @@
 
 
         </div>
+        <footer class="page-footer font-small blue pt-4" >
+          {%block piedPage%}
 
+          <div class="footer-copyright text-center py-3">
+              Site réalisé avec le Framework Symfony et Boostrap par Gassant Kesly
+          </div>
+          {% endblock%}
+        </footer >
         {% endblock %}
         {% block javascripts %}
         <script src="/js/bootstrap.min.js"></script>
