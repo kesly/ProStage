@@ -98,25 +98,27 @@ class ProStageController extends AbstractController
     public function showStageParNomEntreprise($nom, StageRepository $repoStage)
     {
 
-      $stages=$repoStage->findStageParNomEntrepriseQB($nom);
+      $stages=$repoStage->findByNomEntrepriseDQL($nom);
 
       return $this->render("pro_stage/stagesPourEntreprise.html.twig", ['stages'=>$stages, 'entreprise'=>$nom]);
     }
 
 
 
+   /**
+   *@Route("formationNom/{nom}", name="pro_stage_nom_formation")
+   */
 
- /**
- *@Route("formationNom/{nom}", name="pro_stage_nom_formation")
- */
+   public function showStageParNomFormation($nom, StageRepository $repoStage)
+   {
 
- public function showStageParNomFormation($nom, StageRepository $repoStage)
- {
-   $stages=$repoStage->findStageParNomEntrepriseQB($nom);
+     //$nom=$formation->getNomCourt();
 
-   return $this->render("pro_stage/stagesPourFormation.html.twig", ['stages'=>$stages, 'formation'=>$nom]);
+     $stages=$repoStage->findStageParNomFormationQB($nom);
 
- }
+     return $this->render("pro_stage/stagesPourFormation.html.twig", ['stages'=>$stages, 'formation'=>$nom]);
+
+   }
 
 
 

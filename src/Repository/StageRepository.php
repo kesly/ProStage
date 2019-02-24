@@ -50,7 +50,7 @@ class StageRepository extends ServiceEntityRepository
 
     // requette en QueryBuilder qui permet de recuperer tout les stages pour une entreprise données (le nom de l'entreprise)
 
-    public function findStageParNomEntrepriseQB($nom)
+    public function findByNomEntrepriseQB($nom)
     {
       return $this->createQueryBuilder('s')
            ->join('s.entreprise','e')
@@ -63,55 +63,81 @@ class StageRepository extends ServiceEntityRepository
     }
 
 
-        // requette en DQL qui permet de recuperer tout les stages pour une entreprise données (le nom de l'entreprise)
+    // requette en DQL qui permet de recuperer tout les stages pour une entreprise données (le nom de l'entreprise)
 
-        public function findByNomEntepriseDQL($nom)
-        {
-          // recuper le gestionnaire d'entité
+    public function findByNomEntrepriseDQL($nom)
+    {
+      // recuper le gestionnaire d'entité
 
-          $entityManager= $this->getEntityManager();
+      $entityManager= $this->getEntityManager();
 
-          // construction de la requete
+      // construction de la requete
 
-        }
-/*
-        // requette en DQL qui permet de recuperer tout les stages pour une formation données (le nom de la formation)
-        public function findByNomFormationDQL($nom)
-        {
+      $requete= $entityManager->createQuery(
+        'SELECT s
+         FROM App\Entity\Stage s
+         JOIN s.entreprise e
+         WHERE e.nom=:val'
+       );
 
-          // recuperer le gestionnaire d'entité
+      // definir les valeurs injecter
 
-          $gestionnaireEntite= $this->getEntityManager();
+      $requete->setParameter('val', $nom);
 
-          // construction de la requette
+      // executer la requete et retourner le resultat
 
-          $requete= $gestionnaireEntite->createQuery(
-                  'SELECT s
-                  FROM App\Entity\Stage s
-                  WHERE s.entreprise.nom=$nom'
+      return $requete->execute();
+
+    }
+        //---------------------------------------------///
+
+    // requette en DQL qui permet de recuperer tout les stages pour une formation données (le nom de la formation)
+    public function findStageParNomFormationDQL($nom)
+    {
+
+      // recuperer le gestionnaire d'entité
+
+      $gestionnaireEntite= $this->getEntityManager();
+
+      // construction de la requette
+
+      $requete= $gestionnaireEntite->createQuery(
+              'SELECT s
+              FROM App\Entity\Stage s
+              JOIN s.formations f
+              WHERE f.nomCourt= :nomFormation'
+              );
+
+      // definir les parametre injecté
+      $requete->setParameter('nomFormation', $nom);
 
 
+      // executer la requete et retourner le resultat
+      return $requete->execute();
 
-            );
+    }
 
-            // executer la requete et reourner le oci_get_implicit_resultset
-            return $requete->execute();
+    // requette en QueryBuider qui permet de recuperer tout les stages pour une formation données (le nom de la formation)
 
-        }
+    public function findStageParNomFormationQB($nom)
+    {
+        return $this->createQueryBuilder('s')
+                    ->join('s.formations', 'f')
+                    ->where('f.nomCourt= :nomFormation')
+                    ->setParameter('nomFormation', $nom)
+                    ->getQuery()
+                    ->getResult()
 
-          // requette en QueryBuider qui permet de recuperer tout les stages pour une formation données (le nom de la formation)
+            ;
+    }
 
-        public function findByNomFormationQB($nom)
-        {
-            return $this->createQueryBuider('s')
-                        ->
-                        ->
-                        ->getQuery()
-                        -> getResult()
 
-                ;
-        }
+    //-----------------------------------------------------------------------------------------------------------
 
-*/
+  //  public function
+
+    //>select( array( 's' ,'entre'))
+
+
 
 }
