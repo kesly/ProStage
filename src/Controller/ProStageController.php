@@ -54,7 +54,7 @@ class ProStageController extends AbstractController
       // recupérer tout les stages en BD pour l'entreprise ayant pour id, l'id passé en parametre
       $stages=$entreprise->getStages();
 
-      return $this->render("pro_stage/StagesPourEntreprise.html.twig", ['stages'=>$stages, 'entreprise'=> $entreprise]);
+      return $this->render("pro_stage/stagesPourEntreprise.html.twig", ['stages'=>$stages, 'entreprise'=> $entreprise]);
     }
 
 
@@ -66,7 +66,7 @@ class ProStageController extends AbstractController
 
       $stages=$formation->getStages();
 
-      return $this->render("pro_stage/StagesPourFormtion.html.twig", ['stages'=>$stages, 'entreprise'=>$formation]);
+      return $this->render("pro_stage/stagesPourFormation.html.twig", ['stages'=>$stages, 'formation'=>$formation]);
     }
 
 
@@ -90,6 +90,8 @@ class ProStageController extends AbstractController
 
       return $this->render("pro_stage/listeFormations.html.twig", ['formations'=>$formations]);
     }
+
+    
 
 
 

@@ -1,9 +1,30 @@
 {%extends 'base.html.twig'%}
 
 {%block titrePage%}
-Detail pour le stage:
+Detail pour le stage:{{stage.titre}}
 {%endblock%}
 
 {%block contenuPage%}
+
+
+<div class="card" style="width: 30rem; margin-left: auto; margin-right: auto;">
+  <div class="card-header">
+    {{stage.titre}}
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Description: {{stage.description}}</li>
+    <li class="list-group-item">Nom de l'entreprise: {{stage.entreprise.nom}}</li>
+    <li class="list-group-item">Activite de l'entreprise: {{stage.entreprise.activite}} </li>
+    <li class="list-group-item">Adresse de l'entreprise: {{stage.entreprise.adresse}} </li>
+    <li class="list-group-item"> Formation(s) concernée(s):
+    {% for formation in stage.formations %}
+    {{formation.nomLong}}
+    {% if loop.index!= loop.last %}
+    ,
+    {% endif %}
+    {%endfor%}.
+    </li>
+  </ul>
+</div>
 
 {%endblock%}
