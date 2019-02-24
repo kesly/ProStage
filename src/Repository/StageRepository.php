@@ -155,14 +155,20 @@ class StageRepository extends ServiceEntityRepository
      return $requete->execute();
 
    }
-/*
+
     // select( array( 's' ,'entre'))
 
     public function findAllStageOptimiserQB()
     {
 
-
+      return $this->createQueryBuilder('s')
+                  ->join('s.formations','f')
+                  ->join('s.entreprise', 'e')
+                  ->select( array( 's' ,'f', 'e'))
+                  ->getQuery()
+                  ->getResult()
+              ;
     }
 
-*/
+
 }
