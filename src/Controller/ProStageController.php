@@ -59,7 +59,7 @@ class ProStageController extends AbstractController
 
 
     /**
-    *@Route("formation/{id}", name="pro_stage_stages_ormation")
+    *@Route("formation/{id}", name="pro_stage_stages_formation")
     */
     public function showStageParFormation(Formation $formation)
     {

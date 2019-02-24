@@ -44,7 +44,13 @@ class AppFixtures extends Fixture
           $formations[]=$formation;
         }
 
-        // créer les entreprises  et stages-- on généra les stages pour les entre prises lors de la création d'une entreprise
+
+        // tableau pour pouvoir choisir aleatoirement des formations pour un stage
+        $tabNumeroFormation=[];
+        for ($i=0; $i < sizeof($formations); $i++)
+        {
+          $tabNumeroFormation[]=$i;
+        }
 
         $nbEntreprise=10;
         $nbStageMaxParEntreprise=10;
@@ -78,20 +84,19 @@ class AppFixtures extends Fixture
             // lancer aléatoirement le nombre de formation associé au stages
 
             $nbFormation= $faker->numberBetween($min = 1, $max = 5);
-            for ($i=0; $i < $nbFormation; $i++)
-            {
-              // get a random digit, but always a new one, to avoid duplicates
-              $values []= $faker->unique()->randomDigit;
-            }
+            // on mélange le tableau
+            $tabNumeroFormation=$faker->shuffle($tabNumeroFormation);
 
-            for ($i=0; $i < $nbFormation; $i++)
+            // on prend les nbFormation premier valeur de $tabNumeroFormation
+            for ($k=0; $k < $nbFormation; $k++)
             {
               // configurer le stage
-              $stage->addFormation($formations[$i]);
+             $stage->addFormation($formations[ $tabNumeroFormation[$k] ]);
 
               // configurer la formation
-              $formations[$i]->addStage($stage);
+            $formations[$tabNumeroFormation[$k]]->addStage($stage);
             }
+            
 
             // persister le stage
             $manager->persist($stage);
