@@ -133,11 +133,36 @@ class StageRepository extends ServiceEntityRepository
 
 
     //-----------------------------------------------------------------------------------------------------------
+    //----------DQL-----------//
+   public function findAllStageOptimiserDQL()
+   {
 
-  //  public function
+     // recuperer le gestionnaire d'entite
 
-    //>select( array( 's' ,'entre'))
+     $entityManager= $this->getEntityManager();
+
+     // construction de la $requete
+
+     $requete=$entityManager->createQuery(
+       'SELECT s,e,f
+       FROM App\Entity\Stage s
+       JOIN s.entreprise e
+       JOIN s.formations f'
+     );
+
+     // executer requete et envoyer resultat
+
+     return $requete->execute();
+
+   }
+/*
+    // select( array( 's' ,'entre'))
+
+    public function findAllStageOptimiserQB()
+    {
 
 
+    }
 
+*/
 }

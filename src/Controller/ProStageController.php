@@ -39,7 +39,7 @@ class ProStageController extends AbstractController
     */
     public function showStages(StageRepository $repoStages)
     {
-      $stages=$repoStages->findAll();
+      $stages=$repoStages->findAllStageOptimiserDQL();
 
       return $this->render("pro_stage/stages.html.twig", ['stages' => $stages ]);
     }
