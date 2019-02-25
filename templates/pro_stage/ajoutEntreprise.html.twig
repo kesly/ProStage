@@ -8,7 +8,7 @@ Ajouter une entreprise
 
 {{form_start(formEntreprise)}}
   {{form_row(formEntreprise.nom)}}
-  {{form_row(formEntreprise.activite)}}
-  {{form_row(formEntreprise.adresse)}}
+  {{form_row(formEntreprise.activite, {'attr':{'placeholder': 'activite de l\'entreprise'}})}}
+  {{form_row(formEntreprise.adresse, {'attr': {'placeholder': 'adresse de l\'entreprise'}})}}
 {{form_end(formEntreprise)}}
 {%endblock%}
