@@ -10,6 +10,7 @@ use App\Entity\Formation;
 use App\Repository\StageRepository;
 use App\Repository\EntrepriseRepository;
 use App\Repository\FormationRepository;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class ProStageController extends AbstractController
 {
@@ -133,9 +134,9 @@ class ProStageController extends AbstractController
      // créer le formulaire
 
     $formulaireEntreprise= $this->createFormBuilder($entreprise)
-                   ->add('nom')
-                   ->add('activite')
-                   ->add('adresse')
+                   ->add('nom', TextType::class)
+                   ->add('activite', TextType::class)
+                   ->add('adresse', TextType::class)
                    ->getForm(); // generer le formulaire créer avec les different champs indique par la methode add()
 
     // renvoyer le formation a la vue (representation graphique du formulaire generer avant avec la methode createView()  )
