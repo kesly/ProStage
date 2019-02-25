@@ -5,5 +5,10 @@ Ajouter une entreprise
 {%endblock%}
 
 {%block contenuPage%}
-{{form(formEntreprise)}}
+
+{{form_start(formEntreprise)}}
+  {{form_row(formEntreprise.nom)}}
+  {{form_row(formEntreprise.activite)}}
+  {{form_row(formEntreprise.adresse)}}
+{{form_end(formEntreprise)}}
 {%endblock%}
