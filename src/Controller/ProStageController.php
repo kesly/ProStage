@@ -12,6 +12,7 @@ use App\Repository\EntrepriseRepository;
 use App\Repository\FormationRepository;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\HttpFoundation\Request;
 
 class ProStageController extends AbstractController
 {
@@ -125,7 +126,7 @@ class ProStageController extends AbstractController
    /**
    *@Route("ajouterEntreprise", name="pro_stage_ajouter_entreprise")
    */
-   public function ajouterEntreprise()//Manager $entityManager)
+   public function ajouterEntreprise(Request $request)
    {
 
      // créer l'objet à hydrater (entreprise vierge)
@@ -140,6 +141,14 @@ class ProStageController extends AbstractController
                    ->add('adresse', TextType::class)
                    //->add('sauver', SubmitType::class, ['label'=>"Ajouter entreprise"])
                    ->getForm(); // generer le formulaire créer avec les different champs indique par la methode add()
+
+                  // On deménde au formulaire d'analyser la dernier requetete http,
+                  //si le tabaleau post contenu dans cette requette contient des variables nom, activite,
+                  //adresse alors la methode handleRequest
+                  // recupere les valeurs de ces variables et les affecte à l'objet Entreprise
+                   $formulaireEntreprise->handleRequest($request); // analyser la derniere requete realitsé our recuperer si cest necessaire les valeurs du formulaires
+
+                   dump($entreprise);
 
     // renvoyer le formation a la vue (representation graphique du formulaire generer avant avec la methode createView()  )
 
