@@ -119,28 +119,28 @@ class ProStageController extends AbstractController
      return $this->render("pro_stage/stagesPourFormation.html.twig", ['stages'=>$stages, 'formation'=>$nom]);
 
    }
-
+//----------------------------------FORMULAIRE---------------------------------------//
    /**
    *@Route("ajoouterEntreprise", name="pro_stage_ajouter_entreprise")
    */
-   public function ajouterEntreprise(Manager $entityManager)
+   public function ajouterEntreprise()//Manager $entityManager)
    {
 
-     // créer l'objet a hydrater
+     // créer l'objet à hydrater (entreprise vierge)
 
      $entreprise= new Entreprise();
 
      // créer le formulaire
 
-    $formEntreprise= $entityManager->createFormBuilder($entreprise)
-                   ->add(nom)
-                   ->add(activite)
-                   ->add(adresse)
+    $formulaireEntreprise= $this->createFormBuilder($entreprise)
+                   ->add('nom')
+                   ->add('activite')
+                   ->add('adresse')
+                   ->getForm(); // generer le formulaire créer avec les different champs indique par la methode add()
 
+    // renvoyer le formation a la vue (representation graphique du formulaire generer avant avec la methode createView()  )
 
-    // renvoyer le formation a la vue
-
-      $this->render("pro_stage/formulaireEntreprise", [''=> $formEntreprise])
+      return $this->render("pro_stage/ajoutEntreprise.html.twig",['formEntreprise'=> $formulaireEntreprise->createView()]);
    }
 
 
