@@ -11,6 +11,7 @@ use App\Repository\StageRepository;
 use App\Repository\EntrepriseRepository;
 use App\Repository\FormationRepository;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class ProStageController extends AbstractController
 {
@@ -122,7 +123,7 @@ class ProStageController extends AbstractController
    }
 //----------------------------------FORMULAIRE---------------------------------------//
    /**
-   *@Route("ajoouterEntreprise", name="pro_stage_ajouter_entreprise")
+   *@Route("ajouterEntreprise", name="pro_stage_ajouter_entreprise")
    */
    public function ajouterEntreprise()//Manager $entityManager)
    {
@@ -137,6 +138,7 @@ class ProStageController extends AbstractController
                    ->add('nom', TextType::class, ['attr'=>['placeholder'=>'nom de l\'entreprise']])
                    ->add('activite', TextType::class)
                    ->add('adresse', TextType::class)
+                   //->add('sauver', SubmitType::class, ['label'=>"Ajouter entreprise"])
                    ->getForm(); // generer le formulaire créer avec les different champs indique par la methode add()
 
     // renvoyer le formation a la vue (representation graphique du formulaire generer avant avec la methode createView()  )
