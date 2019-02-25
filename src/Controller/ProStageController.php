@@ -120,6 +120,29 @@ class ProStageController extends AbstractController
 
    }
 
+   /**
+   *@Route("ajoouterEntreprise", name="pro_stage_ajouter_entreprise")
+   */
+   public function ajouterEntreprise(Manager $entityManager)
+   {
+
+     // créer l'objet a hydrater
+
+     $entreprise= new Entreprise();
+
+     // créer le formulaire
+
+    $formEntreprise= $entityManager->createFormBuilder($entreprise)
+                   ->add(nom)
+                   ->add(activite)
+                   ->add(adresse)
+
+
+    // renvoyer le formation a la vue
+
+      $this->render("pro_stage/formulaireEntreprise", [''=> $formEntreprise])
+   }
+
 
 
 
