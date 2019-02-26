@@ -13,6 +13,7 @@ use App\Repository\FormationRepository;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
+use Doctrine\Common\Persistence\ObjectManager;
 
 class ProStageController extends AbstractController
 {
@@ -126,7 +127,7 @@ class ProStageController extends AbstractController
    /**
    *@Route("ajouterEntreprise", name="pro_stage_ajouter_entreprise")
    */
-   public function ajouterEntreprise(Request $request)
+   public function ajouterEntreprise(Request $request, ObjectManager $manager)
    {
 
      // créer l'objet à hydrater (entreprise vierge)
@@ -149,6 +150,18 @@ class ProStageController extends AbstractController
                    $formulaireEntreprise->handleRequest($request); // analyser la derniere requete realitsé our recuperer si cest necessaire les valeurs du formulaires
 
                    dump($entreprise);
+
+                   if($formulaireEntreprise->isSubmitted())
+                   {
+                     // créer l'entreprise en base de données
+
+                      $manager->persist($entreprise);
+                      $manager->flush();
+
+                      // Rediriger l'utilisateur vers la page listant les entreprises
+
+                      return $this->RedirectToRoute("pro_stage_entreprises");
+                   }
 
     // renvoyer le formation a la vue (representation graphique du formulaire generer avant avec la methode createView()  )
 
