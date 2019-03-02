@@ -1,15 +1,24 @@
 {%extends 'base.html.twig' %}
 
-{%block titrePage%}
+{% block titrePage %}
+{% if action=="ajouter" %}
 Ajouter une entreprise
-{%endblock%}
+{% else %}
+Modifier une entreprise
+{% endif %}
+{% endblock %}
 
-{%block contenuPage%}
+{% block contenuPage %}
 
 {{form_start(formEntreprise)}}
   {{form_row(formEntreprise.nom)}}
   {{form_row(formEntreprise.activite, {'attr':{'placeholder': 'activite de l\'entreprise'}})}}
   {{form_row(formEntreprise.adresse, {'attr': {'placeholder': 'adresse de l\'entreprise'}})}}
+  {% if action=="ajouter" %}
   <button class="btn btn-dark" type="submit">Ajouter</button>
+  {% else %}
+  <button class="btn btn-dark" type="submit">Modifier</button>
+  {% endif %}
+
 {{form_end(formEntreprise)}}
-{%endblock%}
+{% endblock %}

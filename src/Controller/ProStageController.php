@@ -165,8 +165,51 @@ class ProStageController extends AbstractController
 
     // renvoyer le formation a la vue (representation graphique du formulaire generer avant avec la methode createView()  )
 
-      return $this->render("pro_stage/ajoutEntreprise.html.twig",['formEntreprise'=> $formulaireEntreprise->createView()]);
+      return $this->render("pro_stage/ajoutModifEntreprise.html.twig",['formEntreprise'=> $formulaireEntreprise->createView(), 'action'=>"modifier"]);
    }
+
+
+   /**
+   *@Route("modifierEntreprise/{id}", name="pro_stage_modifier_entreprise")
+   */
+   public function modifierEntreprise(Entreprise $entreprise, Request $request, ObjectManager $manager)
+   {
+
+     // créer le formulaire
+
+    $formulaireEntreprise= $this->createFormBuilder($entreprise)
+                   ->add('nom', TextType::class, ['attr'=>['placeholder'=>'nom de l\'entreprise']])
+                   ->add('activite', TextType::class)
+                   ->add('adresse', TextType::class)
+                   //->add('sauver', SubmitType::class, ['label'=>"Ajouter entreprise"])
+                   ->getForm(); // generer le formulaire créer avec les different champs indique par la methode add()
+
+                  // On deménde au formulaire d'analyser la dernier requetete http,
+                  //si le tabaleau post contenu dans cette requette contient des variables nom, activite,
+                  //adresse alors la methode handleRequest
+                  // recupere les valeurs de ces variables et les affecte à l'objet Entreprise
+                   $formulaireEntreprise->handleRequest($request); // analyser la derniere requete realitsé our recuperer si cest necessaire les valeurs du formulaires
+
+                   dump($entreprise);
+
+                   if($formulaireEntreprise->isSubmitted())
+                   {
+                     // créer l'entreprise en base de données
+
+                      $manager->persist($entreprise);
+                      $manager->flush();
+
+                      // Rediriger l'utilisateur vers la page listant les entreprises
+
+                      return $this->RedirectToRoute("pro_stage_entreprises");
+                   }
+
+    // renvoyer le formation a la vue (representation graphique du formulaire generer avant avec la methode createView()  )
+
+      return $this->render("pro_stage/ajoutModifEntreprise.html.twig",['formEntreprise'=> $formulaireEntreprise->createView(), 'action'=>"modifier"]);
+   }
+
+
 
 
 
