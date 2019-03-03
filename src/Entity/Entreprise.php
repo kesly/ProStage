@@ -31,12 +31,16 @@ class Entreprise
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Regex(pattern="#rue|avenue|boulevard|impasse|allée|place|route|voie#",
+     * message="Le type de route/voie semble etre incorrect")
+     * @Assert\Regex(pattern="[0-9]{5} ", message="Il semble y avaoir un probleme avec le code postal")
+     * @Assert\Regex(pattern="[1-9]\d{0,2} ", message="Le numero de rue semble incorrect")
      */
     private $adresse;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank
+     * @Assert\NotBlank(message="Ce champs ne doit pas etre vide")
      */
     private $activite;
 
