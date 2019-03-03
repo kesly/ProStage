@@ -10,7 +10,7 @@ Modifier une entreprise
 
 {% block contenuPage %}
 
-{{form_start(formEntreprise)}}
+{{form_start(formEntreprise,   {'attr': {'novalidate': 'novalidate'}} )}}    
   {{form_row(formEntreprise.nom)}}
   {{form_row(formEntreprise.activite, {'attr':{'placeholder': 'activite de l\'entreprise'}})}}
   {{form_row(formEntreprise.adresse, {'attr': {'placeholder': 'adresse de l\'entreprise'}})}}

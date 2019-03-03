@@ -151,7 +151,7 @@ class ProStageController extends AbstractController
 
                    dump($entreprise);
 
-                   if($formulaireEntreprise->isSubmitted())
+                   if($formulaireEntreprise->isSubmitted() && $formulaireEntreprise->isValid())
                    {
                      // créer l'entreprise en base de données
 
