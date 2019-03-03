@@ -22,26 +22,26 @@ class Entreprise
 
     /**
      * @ORM\Column(type="string", length=50)
-     */
-    private $nom;
-
-    /**
-     * @ORM\Column(type="string", length=255)
      * @Assert\Length(
      *      min = 4,
      *      minMessage = "Le nom de l'entreprise doit faire au moins {{ limit }} caractères",
      * )
      */
+    private $nom;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
     private $adresse;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
      */
     private $activite;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Stage", mappedBy="entreprise")
-     *Assert\NotBlanck(message="Cette valeur ne doit pas etre vide")
      */
     private $stages;
 

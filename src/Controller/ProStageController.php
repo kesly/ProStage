@@ -165,7 +165,7 @@ class ProStageController extends AbstractController
 
     // renvoyer le formation a la vue (representation graphique du formulaire generer avant avec la methode createView()  )
 
-      return $this->render("pro_stage/ajoutModifEntreprise.html.twig",['formEntreprise'=> $formulaireEntreprise->createView(), 'action'=>"modifier"]);
+      return $this->render("pro_stage/ajoutModifEntreprise.html.twig",['formEntreprise'=> $formulaireEntreprise->createView(), 'action'=>"ajouter"]);
    }
 
 
