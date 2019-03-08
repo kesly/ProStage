@@ -14,6 +14,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
+use App\Form\EntrepriseType;
 
 class ProStageController extends AbstractController
 {
@@ -136,13 +137,13 @@ class ProStageController extends AbstractController
 
      // créer le formulaire
 
-    $formulaireEntreprise= $this->createFormBuilder($entreprise)
-                   ->add('nom', TextType::class, ['attr'=>['placeholder'=>'nom de l\'entreprise']])
+    $formulaireEntreprise= $this->createForm(EntrepriseType::class,  $entreprise);
+                   /*->add('nom', TextType::class, ['attr'=>['placeholder'=>'nom de l\'entreprise']])
                    ->add('activite', TextType::class)
                    ->add('adresse', TextType::class)
                    //->add('sauver', SubmitType::class, ['label'=>"Ajouter entreprise"])
                    ->getForm(); // generer le formulaire créer avec les different champs indique par la methode add()
-
+                  */
                   // On deménde au formulaire d'analyser la dernier requetete http,
                   //si le tabaleau post contenu dans cette requette contient des variables nom, activite,
                   //adresse alors la methode handleRequest
@@ -177,13 +178,13 @@ class ProStageController extends AbstractController
 
      // créer le formulaire
 
-    $formulaireEntreprise= $this->createFormBuilder($entreprise)
-                   ->add('nom', TextType::class, ['attr'=>['placeholder'=>'nom de l\'entreprise']])
+    $formulaireEntreprise= $this->createForm(Entreprise::class, $entreprise);
+                   /*->add('nom', TextType::class, ['attr'=>['placeholder'=>'nom de l\'entreprise']])
                    ->add('activite', TextType::class)
                    ->add('adresse', TextType::class)
                    //->add('sauver', SubmitType::class, ['label'=>"Ajouter entreprise"])
                    ->getForm(); // generer le formulaire créer avec les different champs indique par la methode add()
-
+                  */
                   // On deménde au formulaire d'analyser la dernier requetete http,
                   //si le tabaleau post contenu dans cette requette contient des variables nom, activite,
                   //adresse alors la methode handleRequest
