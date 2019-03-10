@@ -210,6 +210,41 @@ class ProStageController extends AbstractController
       return $this->render("pro_stage/ajoutModifEntreprise.html.twig",['formEntreprise'=> $formulaireEntreprise->createView(), 'action'=>"modifier"]);
    }
 
+   /*
+   *@Route("/ajouterStage", name="pro_stage_ajouter_stage")
+   */
+   public ajouterStage(Request $requetteHttp, ObjectManager $manager)
+   {
+     // créer l'entité qui va etre hydrater
+     $stage= new Stage();
+
+     // créer le formulaire
+     $formulaireStage= $this->createForm(StageType::class, $stage);
+
+     //recupere les donnée soumis et mettre dans l'objet créer precedent a hydrater
+     $formulaireStage->handleRequest($requetteHttp); // analyser la dernier requette http, avec $_POST pour recuperer les doonées
+
+     // verfier que le formulaire est soumis et que les données sont valides
+     if($formulaireStage->isSubmitted() && $formulaireStage->isValid())
+     {
+       // formulaire soumis et validé (respect les regle defini côté serveur)
+
+       // enreigistrer l'objet en BD
+
+       $manager->persist($stage);
+       $manager->flush();
+
+       //rediriger le client vers la page qui presente tout les stage
+
+       return $this->RedirectToRoute("pro_stage_stages");
+     }
+
+     // envoyer le formulaire a la la vue (non soumis)
+
+     return $this->render("pro_stage/ajoutModifStage.html.twig", ['formStage' =>$formulaireStage->createView()]);
+
+   }
+
 
 
 
