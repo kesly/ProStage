@@ -6,6 +6,18 @@ Ajout d'un stage
 
 {% block contenuPage %}
 
-{{ form(formStage) }}
+
+
+{{form_start(formStage)}}
+
+  {{form_row(formStage.titre, {'attr':{'placeholder':'titre du stage...' }})  }}
+  {{form_row(formStage.description, {'attr':{'placeholder':'description du stage...' }}) }}
+  {{form_row(formStage.email, {'attr':{'placeholder':'email du stage...' }}) }}
+  {{form_row(formStage.entreprise) }}
+  {{form_row(formStage.formations) }}
+
+
+<button class="btn btn-dark" type="submit">Enreigistrer</button>
+{{form_end(formStage)}}
 
 {% endblock %}
