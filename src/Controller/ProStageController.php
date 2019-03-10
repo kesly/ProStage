@@ -15,6 +15,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use App\Form\EntrepriseType;
+use App\Form\StageType;
 
 class ProStageController extends AbstractController
 {
@@ -178,7 +179,7 @@ class ProStageController extends AbstractController
 
      // créer le formulaire
 
-    $formulaireEntreprise= $this->createForm(Entreprise::class, $entreprise);
+    $formulaireEntreprise= $this->createForm(EntrepriseType::class, $entreprise);
                    /*->add('nom', TextType::class, ['attr'=>['placeholder'=>'nom de l\'entreprise']])
                    ->add('activite', TextType::class)
                    ->add('adresse', TextType::class)
@@ -210,10 +211,10 @@ class ProStageController extends AbstractController
       return $this->render("pro_stage/ajoutModifEntreprise.html.twig",['formEntreprise'=> $formulaireEntreprise->createView(), 'action'=>"modifier"]);
    }
 
-   /*
+   /**
    *@Route("/ajouterStage", name="pro_stage_ajouter_stage")
    */
-   public ajouterStage(Request $requetteHttp, ObjectManager $manager)
+   public function ajouterStage(Request $requetteHttp, ObjectManager $manager)
    {
      // créer l'entité qui va etre hydrater
      $stage= new Stage();

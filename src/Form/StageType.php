@@ -15,8 +15,8 @@ class StageType extends AbstractType
             ->add('titre')
             ->add('description')
             ->add('email')
-            ->add('entreprise')
-            ->add('formations')
+            ->add('entreprise', EntrepriseType::class, ['label' =>'l\'entreprise du stage'])
+            //->add('formations')
         ;
     }
 
