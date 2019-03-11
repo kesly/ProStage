@@ -1,11 +1,11 @@
 security:
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
-        in_memory:
-            memory:
-                users:
-                    kesly: { password: $2y$10$He0w2Zg/jSfmXZv1QRwpwullyezO9/o4chH2Va6E3J7Yi4n0BOhyq, roles: ROLE_ADMIN }
-                    david: { password: $2y$10$M/RriEpN0h3tbLOK53qrlOylc9pVsLr2Kp6hvdFMsIlguYZlfjiG2, roles: ROLE_USER }
+        # used to reload user from session & other features (e.g. switch_user)
+        app_user_provider:
+            entity:
+                class: App\Entity\User
+                property: email
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
@@ -34,3 +34,6 @@ security:
         Symfony\Component\Security\Core\User\User:
             algorithm: bcrypt
             cost:      15
+        App\Entity\User:
+            algorithm: bcrypt
+
