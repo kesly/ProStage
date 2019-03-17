@@ -7,12 +7,38 @@ use Doctrine\Common\Persistence\ObjectManager;
 use App\Entity\Stage;
 use App\Entity\Formation;
 use App\Entity\Entreprise;
+use App\Entity\User;
 //use Faker\Factory;
 
 class AppFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
+
+      $kesly= new User();
+      $kesly->setNom("gassant");
+      $kesly->setPrenom("kesly");
+      $kesly->setEmail("kesly@hotmail.com");
+      $kesly->setPassword('$2y$10$cdd1CxuBAUYKTquGG402dO6CCSzxdtt0a/PLzLK64mO/SpFA5lR5u');
+      $kesly->setRoles(['ROLE_ADMIN']);
+      $manager->persist($kesly);
+
+      $david= new User();
+      $david->setNom("poo");
+      $david->setPrenom("david");
+      $david->setEmail("david@hotmail.com");
+      $david->setPassword('$2y$10$SpyUWABU1UNoswsXVh2qbOeCuEz9rXOWgCNVASRF1UXpc7BDB.JKO');
+      $david->setRoles(['ROLE_USER']);
+      $manager->persist($david);
+
+      $pierre= new User();
+      $pierre->setNom("lapegue");
+      $pierre->setPrenom("pierre");
+      $pierre->setEmail("pierre@hotmail.com");
+      $pierre->setPassword('$2y$10$vaKQdxZJaIqcfxpY7.nJ7O.Nt09iDEVQCW1w8GYQe7.ipPNQwx7Pu');
+      $pierre->setRoles(['ROLE_USER', 'ROLE_ADMIN']);
+      $manager->persist($pierre);
+
       // création d'un generateur de donnée
       $faker = \Faker\Factory::create('fr_FR');
 
@@ -96,7 +122,7 @@ class AppFixtures extends Fixture
               // configurer la formation
             $formations[$tabNumeroFormation[$k]]->addStage($stage);
             }
-            
+
 
             // persister le stage
             $manager->persist($stage);
