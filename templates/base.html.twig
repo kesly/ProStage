@@ -44,6 +44,24 @@
                     <li class="nav-item">
                       <a class="nav-link" href="{{path('pro_stage_ajouter_stage')}}">Ajouter une Stage</a>
                     </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="{{path('pro_stage_ajouter_stage')}}">Gérer les stages</a>
+                    </li>
+
+                    <li class="nav-item">
+                      <a class="nav-link" href="{{path('pro_stage_ajouter_stage')}}">inscription</a>
+                    </li>
+
+                    {% if is_granted('ROLE_USER') %}
+                    <li class="nav-item">
+                      <a class="nav-link" href="{{path('app_logout')}}">Deconnexion</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                      <a class="nav-link" href="{{path('app_login')}}">Connexion</a>
+                    </li>
+                    {% endif %}
+
                   </ul>
                 </div>
               </nav>
