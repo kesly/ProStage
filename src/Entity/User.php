@@ -4,7 +4,7 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
-
+use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  */
@@ -24,6 +24,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="json")
+     *Assert\Email(message= "Vous devez saisir un email valide")
      */
     private $roles = [];
 
@@ -35,11 +36,13 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=50)
+     *@Assert\NotBlanck(message= "Votre nom est requis pour l'incription")
      */
     private $nom;
 
     /**
      * @ORM\Column(type="string", length=50)
+     *@Assert\NotBlanck(message= "Votre prenom est requis pour l'incription")
      */
     private $prenom;
 
