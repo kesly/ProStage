@@ -38,25 +38,32 @@
                     <li class="nav-item">
                       <a class="nav-link" href="{{path('pro_stage_entreprises')}}">Filtrer par entreprise</a>
                     </li>
+
+                    {% if is_granted('ROLE_ADMIN') %}
                     <li class="nav-item">
                       <a class="nav-link" href="{{path('pro_stage_ajouter_entreprise')}}">Ajouter une entreprise</a>
                     </li>
+                    {% endif %}
+
                     <li class="nav-item">
                       <a class="nav-link" href="{{path('pro_stage_ajouter_stage')}}">Ajouter une Stage</a>
                     </li>
+
+                    {% if is_granted('ROLE_ADMIN') %}
                     <li class="nav-item">
                       <a class="nav-link" href="{{path('pro_stage_ajouter_stage')}}">Gérer les stages</a>
                     </li>
-
-                    <li class="nav-item">
-                      <a class="nav-link" href="{{path('pro_stage_ajouter_stage')}}">inscription</a>
-                    </li>
+                    {% endif %}
 
                     {% if is_granted('ROLE_USER') %}
                     <li class="nav-item">
                       <a class="nav-link" href="{{path('app_logout')}}">Deconnexion</a>
                     </li>
                     {% else %}
+                    <li class="nav-item">
+                      <a class="nav-link" href="{{path('pro_stage_ajouter_stage')}}">inscription</a>
+                    </li>
+
                     <li class="nav-item">
                       <a class="nav-link" href="{{path('app_login')}}">Connexion</a>
                     </li>
@@ -73,7 +80,7 @@
           {%block titrePage%}
           {%endblock%}
          </h2>
-          {%block contenuPage%}
+          {% block contenuPage %}
           <div class="row">
             <div class="col-md-12">
               <!-- Carousel -->
