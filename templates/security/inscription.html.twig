@@ -4,8 +4,13 @@
 
 {% block contenuPage %}
 
-{{form(vueFormulaire)}}
+{{form_start(vueFormulaire, {'attr': {'novalidate': 'novalidate'} } )}}
 
+  {{form_row(vueFormulaire.nom, {'attr': {'placeholder': 'votre nom...'} } )}}
+  {{ form_row(vueFormulaire.prenom, {'attr': {'placeholder':'Votre prenom...'} } ) }}
+  {{ form_row(vueFormulaire.email, {'attr': {'placeholder': 'Votre email...'}})}}
+  {{form_row(vueFormulaire.password)}}
+{{ form_end(vueFormulaire)}}
     <br/>
     <button class="btn btn-lg btn-primary" type="submit">
         S'inscrire
