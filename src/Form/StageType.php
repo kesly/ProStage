@@ -22,7 +22,7 @@ class StageType extends AbstractType
                                                     'choice_label'=>'nomLong',
                                                     'expanded'=>true,
                                                     'multiple'=>true,
-                                                    'label' => 'le stage est proposé aux formations suivantes'])
+                                                    'label' => 'le stage est proposé aux formations suivantes:'])
         ;
     }
 

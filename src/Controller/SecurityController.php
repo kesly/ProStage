@@ -6,6 +6,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Symfony\Component\HttpFoundation\Request;
+use Doctrine\Common\Persistence\ObjectManager;
+use App\Form\UserType;
+use App\Entity\User;
 
 class SecurityController extends AbstractController
 {
@@ -34,10 +38,31 @@ class SecurityController extends AbstractController
     /**
     *@Route("/inscription", name="app_inscription")
     */
-    public function inscription()
+    public function inscription(Request $requetteHttp, ObjectManager $manager)
     {
 
-      return $this->render('security/inscription.html.twig', []);
+      $utilisateur=new User();
+
+      // création du formulaire
+      $formulaireUser=$this->createForm(UserType::class, $utilisateur);
+
+      // verifier la dernier requete http pour hydrater l'objet $utilisateur
+
+      $formulaireUser->handleRequest($requetteHttp);
+
+      // verifier que le formulaire est soumis et valider pou rl'enreigistrer en BD
+
+      if ($formulaireUser->isSubmitted() &&  $formulaireUser->isValid())
+      {
+        // enreigistrer l'objet en BD
+        $manager->persist($utilisateur);
+        $manager->flush();
+
+        // rediriger vers la page de Connexion
+        return $this->RedirectToRoute('app_login');
+      }
+
+      return $this->render('security/inscription.html.twig', ['vueFormulaire' => $formulaireUser->createView()]);
     }
 
 }
